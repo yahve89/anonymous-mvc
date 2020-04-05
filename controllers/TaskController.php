@@ -25,7 +25,7 @@ class TaskController extends \App\Basic\Controller
      */
     public function actionCreate()
     {
-        $validate = null;
+        $validate = false;
         $model = new Task;
 
         if (isset($_POST['task'])) {
@@ -37,7 +37,7 @@ class TaskController extends \App\Basic\Controller
            
             $validate = $model->validateAttr();
 
-            if (is_bool($validate)) {
+            if ($validate === true) {
                 if ($model->insert() === true) {
                     $this->setFlash('success', 'Задание добавлено.');
                     $this->redirect('/');
@@ -62,7 +62,8 @@ class TaskController extends \App\Basic\Controller
 
         if (empty($params['id']))
             Main::exception('Bad request', 400);
-
+        
+        $validate = false;
         $data = NULL;
         $input = file_get_contents('php://input');
         $model = (new Task)->findById('task', $params['id']);
@@ -97,7 +98,7 @@ class TaskController extends \App\Basic\Controller
             if (strcasecmp(json_encode($lastModel), json_encode($newModel)) != 0)
                 $model->adminEdit = true;
 
-            if (is_bool($validate)) {
+            if ($validate === true) {
                 if ($model->update() === true) {
                     if(isset($_GET['ajax']))
                         return true; 
@@ -110,7 +111,8 @@ class TaskController extends \App\Basic\Controller
 
         return $this->render('task/update', [
             'title' => 'taskController',
-            'model' => $model
+            'model' => $model,
+            'validate' => $validate
         ]);
     }
 
