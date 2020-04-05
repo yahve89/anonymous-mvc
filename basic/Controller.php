@@ -38,7 +38,7 @@ class Controller
         }
 
         if ($forbidden)
-            Main::exception('Forbidden', 403);
+            $this->redirect('/login');
     }
 
     /**
