@@ -72,7 +72,7 @@ class DefaultController extends \App\Basic\Controller
 
             $validate = $loginForm->validateAttr();
             
-            if (empty($user = User::findByUsername($loginForm->username)))
+            if (empty($user = User::findByUsername($loginForm->username)) and !is_array($validate))
                 $validate = false;
 
             if ($validate === true) {  
