@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Basic\Application;
 use App\Helpers\Main;
 use App\Models\User;
 use App\Models\Task;
@@ -17,7 +18,7 @@ class DefaultController extends \App\Basic\Controller
     {
         return [
             null => ['actionIndex', 'actionLogin', 'actionFaq'],
-            'root' => ['actionIndex', 'actionLogin', 'actionLogout', 'actionFaq']
+            'root' => ['actionIndex', 'actionLogout', 'actionFaq']
         ];
     }
 
@@ -26,7 +27,7 @@ class DefaultController extends \App\Basic\Controller
      * @return mixed
      */
     public function actionIndex()
-    {   
+    {  
         $page = 1;
         $perPage = 3;
         $sort = null;
@@ -51,6 +52,7 @@ class DefaultController extends \App\Basic\Controller
      */
     public function actionFaq()
     {  
+ 
         return $this->render('default/faq', ['title' => 'DefaultController']);
     }
 

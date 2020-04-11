@@ -47,9 +47,10 @@ class Task extends \App\Basic\Model
         $data = [];
         $models = [];
         $db = self::db();
-        $sth = $db->prepare('SELECT id FROM task');
+        $sth = $db->prepare('SELECT COUNT(id) as count_row FROM task');
         $sth->execute();
-        $totalPages = ceil($sth->rowCount() / $perPage);
+
+        $totalPages = ceil($sth->fetch()->count_row / $perPage);
         $start = ($currentPage - 1) * $perPage;
         $query = (new Query($db))
             ->from('task') 

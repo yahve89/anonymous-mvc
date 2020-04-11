@@ -19,10 +19,10 @@
         <a class="nav-item nav-link" href="/">Главная</a>
         <a class="nav-item nav-link" href="/task/create">Создать задачу</a>
         <a class="nav-item nav-link" href="/default/faq">Что использовал</a>
-        <?php if (\App\Models\User::getRole()): ?>
-          <a class="nav-item nav-link" href="/logout">Выход</a>
-        <?php else: ?>
+        <?php if (\App\Models\User::isGuest()): ?>
           <a class="nav-item nav-link" href="/login">Вход</a>
+        <?php else: ?>
+          <a class="nav-item nav-link" href="/logout">Выход</a>
         <?php endif ?>
       </div>
     </div>

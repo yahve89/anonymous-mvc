@@ -21,11 +21,11 @@
       <div class="invalid-feedback">Текст задачи не может быть пустым</div>
     <?php endif ?>
   </div>
-  <?php if (\App\Models\User::getRole() == 'root' and !empty($params['model']->id)): ?>
+  <?php if (\App\Models\User::isAdmin() and !empty($params['model']->id)): ?>
     <div class="form-group">
       <label for="staus">Статус задачи:</label>
       <select onchange="updateItem('<?= $formAction ?>');" class="form-control" name="task[status]" id="staus">
-        <option value="0" <?= ($params['model']->getStatus()->type == 0)? 'selected' :'' ?>>не выполнено</option>
+        <option value="0" <?= ($params['model']->getStatus()->type == 0)? 'selected' :'' ?>>Не выполнено</option>
         <option value="1" <?= ($params['model']->getStatus()->type == 1)? 'selected' :'' ?>>выполнено</option>
       </select>
     </div>
@@ -34,22 +34,3 @@
     <?= isset($params['model']->id)? 'Обновить': 'Сохранить' ?>    
   </button>
 </form>
-
-<?php if (\App\Models\User::getRole() == 'root' and !empty($params['model']->id)): ?>
-  <script type="text/javascript">
-    function updateItem(formAction) {
-      let data = { 'task': {
-        'user_name': document.getElementById('user_name').value,
-        'email': document.getElementById('email').value,
-        'text': document.getElementById('text').value,
-        'status': document.getElementById('staus').value
-        }
-      }
-
-      let xhr = new XMLHttpRequest()
-      xhr.open("POST", formAction +'?ajax=true', true)
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.send(JSON.stringify(data))
-    }
-</script>
-<?php endif ?>

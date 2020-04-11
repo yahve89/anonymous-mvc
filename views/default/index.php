@@ -32,7 +32,7 @@
                 <?php endforeach ?>
                 <p></p>
               </td>
-              <?php if (\App\Models\User::getRole() == 'root'): ?>
+              <?php if (\App\Models\User::IsAdmin()): ?>
                 <td>
                   <a class="btn p-0" href="/task/update/<?= $item->id ?>">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
   <?php endif ?>
 </div>
 
-<?php if (\App\Models\User::getRole() == 'root'): ?>
+<?php if (\App\Models\User::IsAdmin()): ?>
   <script type="text/javascript">
     function deleteItem(id) {
       if (confirm("Вы подтверждаете удаление?")) {

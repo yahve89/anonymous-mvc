@@ -4,4 +4,6 @@ require dirname(__DIR__) .'/vendor/autoload.php';
 
 define('DS', DIRECTORY_SEPARATOR);
 
-(new App\Basic\Application())->run();
+ $config = require dirname(__DIR__) . '/config/web.php';
+
+\App\Basic\ai::app()->setConfig($config)->run();

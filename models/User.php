@@ -44,12 +44,30 @@ class User extends \App\Basic\Model
 
     /**
      * Получить роль текущего пользователя
-     * @return type
+     * @return null | string 
      */
     public static function getRole()
     {
         $model = self::getUser();
         return empty($model)? null: $model->role;
+    }
+    
+    /**
+     * Проверка, гость ли это
+     * @return bool 
+     */
+    public static function isGuest()
+    {
+        return (self::getRole() === null)? true: false;
+    }
+    
+    /**
+     * Проверка, админ ли это
+     * @return bool 
+     */
+    public static function isAdmin()
+    {
+        return (self::getRole() === 'root')? true: false;
     }
 
     /**

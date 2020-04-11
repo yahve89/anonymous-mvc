@@ -8,11 +8,11 @@ use App\Models\User;
 class Controller
 {
     public static $layout = 'layout/main';
-    public static $session = false;
-    
-    public function __construct($action) 
+    public static $session = false;  
+
+    public function __construct() 
     {
-        $this->checkAccess($action);
+        $this->checkAccess();
 
         if (self::$session == false)
             self::$session = \App\Basic\Session::getInstance();
@@ -20,14 +20,14 @@ class Controller
 
     /**
      * Метод проверяет разрешен ли доступ к экшену
-     * @param string $actionCalled
      * @return void|Exception
      */
-    public function checkAccess($actionCalled)
+    public function checkAccess()
     {
         $forbidden = true;
         $userRole = User::getRole();
-
+        $actionCalled = AI::app()->nameAction();
+        
         foreach ($this->access() as $role => $actions) {
             if (strcasecmp($userRole, $role) == 0) {
                 foreach ($actions as $action) {          
@@ -38,7 +38,7 @@ class Controller
         }
 
         if ($forbidden)
-            $this->redirect('/login');
+            Main::exception('Forbidden', 403);
     }
 
     /**
@@ -70,12 +70,8 @@ class Controller
         
         if ($layout == true)
             $fileView = Main::viewDir() .self::$layout; 
-        
-        try {
-            return require_once $fileView . '.php';
-        } catch (Exception $e) {
-            var_dump($e);
-        }
+
+        return require_once $fileView . '.php';
     }
 
     /**

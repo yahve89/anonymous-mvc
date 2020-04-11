@@ -4,14 +4,14 @@ namespace App\Basic;
 
 class DataBase extends \PDO
 {
-    use TraitConfig;
-
     private static $db;
     
     public function __construct()
     {
-        $config = $this->config('db');
-        parent::__construct($config['dsn'], $config['username'], $config['password']);
+        $dsn = \App\Basic\AI::app()->config('db.dsn');
+        $username = \App\Basic\AI::app()->config('db.username');
+        $password = \App\Basic\AI::app()->config('db.password');
+        parent::__construct($dsn, $username, $password);
     }
 
     public static function db()
