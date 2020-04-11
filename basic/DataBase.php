@@ -8,9 +8,9 @@ class DataBase extends \PDO
     
     public function __construct()
     {
-        $dsn = \App\Basic\AI::app()->config('db.dsn');
-        $username = \App\Basic\AI::app()->config('db.username');
-        $password = \App\Basic\AI::app()->config('db.password');
+        $dsn = App::self()->config('db.dsn');
+        $username = App::self()->config('db.username');
+        $password = App::self()->config('db.password');
         parent::__construct($dsn, $username, $password);
     }
 

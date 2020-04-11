@@ -14,5 +14,9 @@ return [
         '/^([a-z]+)\/(\d+)$/m' => ['setController', 'id'],
         '/^([a-z]+)\/([a-z]+)$/m' => ['setController', 'setAction'],
         '/^([a-z]+)\/([a-z]+)\/(\d+)$/m' => ['setController', 'setAction', 'id']
+    ],
+    'alias' => [
+        'rootDir' => dirname(__FILE__, 2) .DS,
+        'viewDir' =>  dirname(__FILE__, 2) .DS .'views' .DS 
     ]
 ];

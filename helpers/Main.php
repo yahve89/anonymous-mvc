@@ -85,29 +85,4 @@ class Main
             return  $main->url['path'] .'?' .$query;
         }
     }
-
-    /**
-     * @return type
-     */
-    public static function rootDir()
-    {
-        return dirname(__FILE__, 2);
-    }
-
-    public static function viewDir()
-    {
-        return self::rootDir() .DS.'views'.DS;
-    }
-
-    /**
-     * @param string $msg
-     * @param string $msg
-     * @return string
-     */
-    public static function exception($msg = false, $code = false)
-    {
-        header("HTTP/1.0 $code $msg");
-        echo $msg;
-        exit();
-    }
 }

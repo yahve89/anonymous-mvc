@@ -15,7 +15,7 @@ class Controller
         $this->checkAccess();
 
         if (self::$session == false)
-            self::$session = \App\Basic\Session::getInstance();
+            self::$session = Session::getInstance();
     }
 
     /**
@@ -26,7 +26,7 @@ class Controller
     {
         $forbidden = true;
         $userRole = User::getRole();
-        $actionCalled = AI::app()->nameAction();
+        $actionCalled = App::self()->nameAction();
         
         foreach ($this->access() as $role => $actions) {
             if (strcasecmp($userRole, $role) == 0) {
@@ -38,7 +38,7 @@ class Controller
         }
 
         if ($forbidden)
-            Main::exception('Forbidden', 403);
+            Exception::set('Forbidden', 403);
     }
 
     /**
@@ -66,10 +66,10 @@ class Controller
      */
     public static function renderPartal($view, $params = [], $layout = false)
     {
-        $fileView = Main::viewDir() .$view; 
+        $fileView = App::self()->config('alias.viewDir') .$view; 
         
         if ($layout == true)
-            $fileView = Main::viewDir() .self::$layout; 
+            $fileView = App::self()->config('alias.viewDir') .self::$layout; 
 
         return require_once $fileView . '.php';
     }
