@@ -2,6 +2,8 @@
 
 namespace App\Basic;
 
+use \Envms\FluentPDO\Query;
+
 class DataBase extends \PDO
 {
     private static $db;
@@ -21,5 +23,13 @@ class DataBase extends \PDO
         
         self::$db->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
         return self::$db;
+    }
+
+    /**
+     * @return type
+     */
+    public function fpdo()
+    {
+        return new Query(self::db());
     }
 }

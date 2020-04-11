@@ -2,6 +2,8 @@
 
 namespace App\Basic;
 
+use App\Helpers\Exception;
+
 class App
 {
     private $controller = 'App\\Controllers\\DefaultController';

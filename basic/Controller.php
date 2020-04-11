@@ -4,6 +4,7 @@ namespace App\Basic;
 
 use App\Helpers\Main; 
 use App\Models\User;
+use App\Helpers\Exception;
 
 class Controller
 {

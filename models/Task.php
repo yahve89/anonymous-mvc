@@ -4,7 +4,6 @@ namespace App\Models;
 
 use \App\Basic\Session;
 use \App\Models\Status;
-use \Envms\FluentPDO\Query;
 
 class Task extends \App\Basic\Model
 {
@@ -52,7 +51,7 @@ class Task extends \App\Basic\Model
 
         $totalPages = ceil($sth->fetch()->count_row / $perPage);
         $start = ($currentPage - 1) * $perPage;
-        $query = (new Query($db))
+        $query = $db->fpdo()
             ->from('task') 
             ->leftJoin('status ON status.task_id = task.id AND type != 2')
             ->select('status.type')

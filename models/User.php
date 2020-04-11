@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use \App\Basic\Session;
-
 class User extends \App\Basic\Model
 {    
     public function __construct($model = null) 
