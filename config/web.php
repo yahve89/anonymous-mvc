@@ -17,6 +17,7 @@ return [
     ],
     'alias' => [
         'rootDir' => dirname(__FILE__, 2) .DS,
-        'viewDir' =>  dirname(__FILE__, 2) .DS .'views' .DS 
+        'viewDir' =>  dirname(__FILE__, 2) .DS .'views' .DS, 
+        'vueDir' =>  dirname(__FILE__, 2) .DS .'vue' .DS .'dist' .DS,
     ]
 ];

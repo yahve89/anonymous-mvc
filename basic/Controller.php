@@ -49,7 +49,7 @@ class Controller
     {
         Controller::renderPartal($view, $params, true);
     }
-
+    
     /**
      * @return void
      */
@@ -75,6 +75,14 @@ class Controller
         return require_once $fileView . '.php';
     }
 
+    /**
+     * @return mixed
+     */
+    public function renderVue()
+    {
+       return require_once App::self()->config('alias.vueDir') . 'index.html'; 
+    }
+    
     /**
      * @param string $class
      * @param string $msg
