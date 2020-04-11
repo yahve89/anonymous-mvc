@@ -52,8 +52,7 @@ class DefaultController extends \App\Basic\Controller
      */
     public function actionFaq()
     {  
-        return $this->renderVue();
-        // return $this->render('default/faq', ['title' => 'DefaultController']);
+        return $this->render('default/faq', ['title' => 'DefaultController']);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php 
 
 return [
+    'projectName' => 'base',
     'db' => [
         'dsn' => 'mysql:host=localhost;dbname=mvc;charset=utf8',
         'username' => 'root',
@@ -17,7 +18,6 @@ return [
     ],
     'alias' => [
         'rootDir' => dirname(__FILE__, 2) .DS,
-        'viewDir' =>  dirname(__FILE__, 2) .DS .'views' .DS, 
-        'vueDir' =>  dirname(__FILE__, 2) .DS .'vue' .DS .'dist' .DS,
+        'viewDir' =>  dirname(__FILE__, 2) .DS .'views' .DS,
     ]
 ];

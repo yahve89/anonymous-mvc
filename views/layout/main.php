@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= $params['title'] ?></title>
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/build/main.css">
+  <?= \App\Helpers\Assets::getCss(); ?>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,9 +27,6 @@
   </nav>
   <?php \App\Basic\Controller::renderPartal('widgets/alert'); ?>
   <?php \App\Basic\Controller::renderPartal($view, $params); ?>
-  <script src="/assets/js/jquery-3.4.1.slim.min.js"></script>
-  <script src="/assets/js/popper.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/build/main.js"></script>
+  <?= \App\Helpers\Assets::getJs(); ?>
 </body>
 </html>
